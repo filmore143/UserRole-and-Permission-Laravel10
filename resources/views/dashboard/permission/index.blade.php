@@ -3,11 +3,12 @@
 <section class="content-main">
     <div class="content-header">
         <div>
-            <h2 class="content-title card-title">Roles</h2>
-            <p>List of Roles</p>
+            <h2 class="content-title card-title">Permissions</h2>
+            <p>List of Permissions</p>
         </div>
         <div>
-            <a href="{{route('role.create')}}" class="btn btn-primary"><i class="text-muted material-icons md-post_add"></i>Add Role</a>
+            <a href="{{route('role.permissions')}}" class="btn btn-primary"><i class="text-muted material-icons md-account_circle"></i>Role Permission</a>
+            <a href="{{route('permission.create')}}" class="btn btn-primary"><i class="text-muted material-icons md-group_add"></i>Add Permission</a>
         </div>
     </div>
 
@@ -27,21 +28,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($roles as $key => $value)
+                        @foreach ($permissions as $key => $value)
                         <tr>
                             <td>{{$key + 1}}</td>
                             <td><b>{{$value->name}}</b></td>
                             {{-- <td>{{$value->roles->first() ? $value->roles->first()->name : 'No Role Assigned'}}</td> --}}
                             <td class="text-end">
-                             <form action="{{route('role.destroy', $value->id)}}" method="post">
+                               <form action="{{route('permission.destroy', $value->id)}}" method="post">
                                 @csrf
                                 @method('delete')
 
-                                <a href="{{route('role.show', $value->id)}}" class="btn btn-md rounded font-sm">Detail</a>
+                                <a href="{{route('permission.show', $value->id)}}" class="btn btn-md rounded font-sm">Detail</a>
                                 <div class="dropdown">
                                     <a href="#" data-bs-toggle="dropdown" class="btn btn-light rounded btn-sm font-sm"> <i class="material-icons md-more_horiz"></i> </a>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{route('role.edit', $value->id)}}">Edit info</a>
+                                        <a class="dropdown-item" href="{{route('permission.edit', $value->id)}}">Edit Permission</a>
                                         <button type="submit" class="dropdown-item bg-danger text-white" onclick="return confirm('Are you sure?')">Delete</button>
                                     </div>
                                 </div>

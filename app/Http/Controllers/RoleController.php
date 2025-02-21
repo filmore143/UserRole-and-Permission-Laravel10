@@ -60,6 +60,10 @@ class RoleController extends Controller
     public function show($id)
     {
         //
+        $role = Role::find($id);
+        $rolePermissions = $role->permissions->pluck('name');
+
+        return view('dashboard.role.show', compact('role', 'rolePermissions'));
     }
 
     /**
@@ -114,5 +118,17 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+
+        $role = Role::find($id);
+
+
+        $permissions = Permission::all();
+        foreach($permissions as $permission)
+        {
+            $role->revokePermissionTo($permission);
+        }
+
+        Role::where('id', $id)->delete();
+        return redirect()->route('role.index')->with('message', 'Role Deleted Successfully');
     }
 }

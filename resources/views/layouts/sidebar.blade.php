@@ -25,14 +25,14 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="{{route('role.index')}}">
-                    <i class="icon material-icons md-verified_user"></i>
+                    <i class="icon material-icons md-groups"></i>
                     <span class="text">Roles</span>
                 </a>
             </li>
             <li class="menu-item">
-                <a class="menu-link" href="page-form-product-1.html">
+                <a class="menu-link" href="{{route('permission.index')}}">
                     <i class="icon material-icons md-add_box"></i>
-                    <span class="text">Add product</span>
+                    <span class="text">Permissions</span>
                 </a>
             </li>
             <li class="menu-item has-submenu">

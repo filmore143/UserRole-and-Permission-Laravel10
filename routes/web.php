@@ -4,6 +4,7 @@ use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\UserController;
 use \App\Http\Controllers\RoleController;
+use \App\Http\Controllers\PermissionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,4 +32,7 @@ Route::middleware([
 
     Route::resource('user', UserController::class);
     Route::resource('role', RoleController::class);
+    Route::resource('permission', PermissionController::class);
+    Route::get('role-permissions', [PermissionController::class, 'rolePermissions'])->name('role.permissions');
+    Route::post('sync-permissions', [PermissionController::class, 'syncPermissions'])->name('sync.permissions');
 });
