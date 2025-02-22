@@ -15,14 +15,14 @@
                     <span class="text">Dashboard</span>
                 </a>
             </li>
-
+            @can('user-list')
             <li class="menu-item">
                 <a class="menu-link" href="{{route('user.index')}}">
                     <i class="icon material-icons md-verified_user"></i>
                     <span class="text">Users</span>
                 </a>
             </li>
-
+            @endcan
             <li class="menu-item">
                 <a class="menu-link" href="{{route('role.index')}}">
                     <i class="icon material-icons md-groups"></i>
@@ -35,7 +35,7 @@
                     <span class="text">Permissions</span>
                 </a>
             </li>
-            <li class="menu-item has-submenu">
+            {{-- <li class="menu-item has-submenu">
                 <a class="menu-link" href="#">
                     <i class="icon material-icons md-person"></i>
                     <span class="text">Account</span>
@@ -45,7 +45,7 @@
                     <a href="page-account-register.html">User registration</a>
                     <a href="page-error-404.html">Error 404</a>
                 </div>
-            </li>
+            </li> --}}
         </ul>
         <hr />
         <ul class="menu-aside">

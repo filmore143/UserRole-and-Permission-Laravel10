@@ -8,6 +8,17 @@ use Spatie\Permission\Models\Permission;
 
 class RoleController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:role-list|role-create|role-show|role-update|role-delete', ['only' => ['index', 'show']]); //display index and show
+        $this->middleware('permission:role-create', ['only' => ['create', 'store']]); //display create and store
+        $this->middleware('permission:role-show', ['only' => ['show']]);  ///display only show
+        $this->middleware('permission:role-update', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+        $this->middleware('permission-permission-sync', ['only' => ['syncPermissions', 'rolePermissions']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -104,7 +115,7 @@ class RoleController extends Controller
         $permissions = Permission::whereIn('id', $request->input('permission'))->get();
         foreach($permissions as $permission)
         {
-            $role->givePermissionTo($permission);
+            $role->syncPermissions($permission);
         }
         return redirect()->route('role.index')->with('message', 'Role Updated Successfully');
     }
